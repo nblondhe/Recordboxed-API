@@ -13,3 +13,6 @@ dotnet run --project Recordboxed
 #### Optional Run
 
 `dotnet run --launch-profile https`
+
+#### builder.Configuration ENVS
+dotnet user-secrets is used
