@@ -11,7 +11,7 @@ using Recordboxed.Data;
 namespace Recordboxed.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241215135101_Initial")]
+    [Migration("20241219014747_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -26,24 +26,25 @@ namespace Recordboxed.Migrations
 
             modelBuilder.Entity("Recordboxed.Record", b =>
                 {
-                    b.Property<int>("RecordId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecordId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Artist")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Meta")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RecordId");
+                    b.HasKey("Id");
 
                     b.ToTable("Records");
                 });
