@@ -1,0 +1,37 @@
+# run: dotnet build .\Recordboxed.csproj --configuration Release --no-restore
+
+name: Deploy API 
+
+
+on:
+    workflow_dispatch: 
+
+env:
+  AZURE_WEBAPP_NAME: "app-recordboxed-api-centus-dev-001"
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Setup .NET API
+              uses: actions/setup-dotnet@v3
+              with:
+                dotnet-version: 8.0.x
+
+            - name: Install Dependencies
+              run: dotnet restore Recordboxed.csproj
+
+            - name: Build
+              run: dotnet build Recordboxed.csproj 
+
+            # - name: Publish
+            #   run: dotnet publish Recordboxed.csproj --configuration Release --output ./publish
+            
+            # - name: Deploy to Azure Web Apps
+            #   uses: azure/webapps-deploy@v2
+            #   with:
+            #       app-name: ${{ env.AZURE_WEBAPP_NAME }}
+            #       publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+            #       package: ./publish
+            
